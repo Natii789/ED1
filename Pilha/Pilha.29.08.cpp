@@ -12,43 +12,90 @@
 				- Inicializar 
 				- PUSH -> inserir um elemento
 				- POP -> retirar e retornar
-				- acesso ao elemento do topo, retornando-o
+				- acesso ao elemento do TOPO, retornando-o
 				- verifica se pilha cheia 
 				- verifica se pilha vazia
 				- exibir pilha
 				
 */
-#define MAXPILHA 10
 
-struct TpPilha{
-	int TOPO, pilha[MAXPILHA];
-};
+#include<conio2.h>
+#include<stdio.h>
+#include<ctype.h>
+#include<stdlib.h>
 
-void Inicializa ( TpPilha &p ){
-	p.TOPO = -1;
+#include "pilha.h"
+
+
+
+
+char MENU(){
+	clrscr();
+	printf("\n[A] Insere");
+	printf("\n[B] Exclui");
+	printf("\n[C] Verifica se esta cheia");
+	printf("\n[D] Verifica se esta vazia");
+	printf("\n[E] Exibir Pilha");
+	return toupper(getch());
 }
 
-void PUSH ( TpPilha &p, char elem ){
-	p.PILHA[++p.TOPO] = elem;
+
+int main(){
+	TpPilha P;
+	Inicializa(P);
+	
+	char op;
+	int elem; 
+	
+	do {
+		op = MENU();
+		switch(op){
+			case 'A': 
+				if(!Cheia(P.TOPO)){
+					printf("\nElemento:");
+					scanf("%d", &elem);
+					PUSH(P, elem);
+				}else
+					printf("\nPilha cheia");
+				getch();
+				break;
+			case 'B':
+				if(!Vazia(P.TOPO))
+					printf("%d",POP(P));
+				else
+					printf("\nPilha vazia");
+				getch();
+				break;
+			case 'C':
+				if(Cheia(P.TOPO)){
+					printf("\nPilha cheia");
+				}else
+					printf("\nPilha nao cheia");
+				getch();
+				break;
+			case 'D':
+				if(Vazia(P.TOPO)){
+					printf("\nPilha vazia");
+				}else
+					printf("\nPilha nao vazia");
+				getch();
+				break;
+			case 'E':
+				Exibe(P);
+				break;
+		}
+		
+	}while(op!=27);
 }
 
-char POP ( TpPilha &p ){
-	return p.PILHA[p.TOPO--];
-}
 
-char ElementoTopo ( TpPilha p ){
-	return p.PILHA[p.TOPO];
-}
 
-int Cheia ( int topo ){
-	return topo == MAXPILHA -1;
-}
 
-int Vazia ( int topo ){
-	return topo == -1;
-}
 
-void Exibe (TpPilha p){
-	while(!vazia(p.topo))
-		printf("\n%d", pop(p));
-}
+
+
+
+
+
+
+
