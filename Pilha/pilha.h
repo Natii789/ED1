@@ -7,11 +7,11 @@ int Cheia (int TOPO);
 int Vazia (int TOPO);
 void Exibe (TpPilha p);
 */
-
 #define MAXPILHA 10
 
 struct TpPilha{
-	int TOPO, PILHA[MAXPILHA];
+	int TOPO;
+	char PILHA[MAXPILHA];
 };
 
 void Inicializa ( TpPilha &p ){
@@ -19,11 +19,11 @@ void Inicializa ( TpPilha &p ){
 }
 
 void PUSH ( TpPilha &p, char elem ){
-		p.PILHA[++p.TOPO] = elem;
+	p.PILHA[++p.TOPO] = elem;
 }
 
 char POP ( TpPilha &p ){
-		return p.PILHA[p.TOPO--];
+	return p.PILHA[p.TOPO--];
 }
 
 char ElementoTOPO ( TpPilha p ){
