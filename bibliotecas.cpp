@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+fopen(); - Abre um arquivo e retorna um ponteiro para ele.
+fclose(); - Fecha um arquivo aberto anteriormente.
+fgetc(); - Lê um caractere do arquivo.
+fputc(); - Escreve um caractere em um arquivo.
+fgets(); - Lê uma linha de um arquivo.
+fputs(); - Escreve uma string em um arquivo.
+fwrite(); - Escreve um bloco de dados em um arquivo.
+fprintf(); - Escreve dados formatados em um arquivo.
+fscanf(); - Lê dados formatados de um arquivo.
+fseek(); - Move o ponteiro do arquivo para uma posição específica.
+ftell(); - Retorna a posição atual do ponteiro do arquivo.
+rewind(); - Reseta o ponteiro do arquivo para o início.
+feof(); - Verifica se o fim do arquivo foi alcançado.
+
+printf(); - Imprime dados formatados na saída padrão (console).
+scanf(); - Lê dados formatados da entrada padrão (teclado).
+puts(); - Escreve uma string na saída padrão seguida por uma nova linha.
+gets(); - Lê uma linha de entrada padrão.
+rename(); - Renomeia um arquivo.
+remove(); - Remove (exclui) um arquivo.
+fflush(); - É garantir que os dados contidos em um buffer sejam realmente 
+escritos.
+
+#include <string.h>
+
+strlen(); - Retorna o comprimento de uma string.
+strcpy(); - Copia uma string para outra.
+strcmp(); - Compara duas strings lexicograficamente.
+strtok(); - Divide a entrada em palavras
+strupr(); - É usado para converter uma string para maiúsculas.
+
+#include <ctype.h>
+
+isspace(); - Verifica se o caractere é um espaço em branco.
+tolower(); - Converte uma letra maiúscula em minúscula.
+toupper(); - Converte uma letra minúscula em maiúscula.
+
+
+#include <stdlib.h>
+
+system(); - Executa um comando no sistema operacional.
+CONSTANTES: NULL - Representa um ponteiro nulo
+srand(); - Define a "semente" para geração de números pseudoaleatórios.
+rand(); - gera o número aleatório.
+
+
+#include <conio2.h>
+
+clrscr(); - Limpa a tela do console.
+gotoxy(); - Move o cursor para uma posição específica na tela.
+textcolor(); - Define a cor do texto que será impresso no console.
+textbackground(); - Define a cor do fundo do texto no console.
+getch(); - Lê um caractere do teclado sem ecoá-lo na tela.
+getche(); - Lê um caractere do teclado e o ecoa na tela.
+kbhit(); - Detecta se o usuário apertou alguma tecla.
+
+
+#include <windows.h>
+
+Sleep(); - Suspende a execução do thread atual por um período especificado.
+
+
+#include <locale.h>
+
+setlocale(categoria, "localidade"); - para configurar o local.
+
+categoria: define qual parte será afetada
+
+LC_ALL ? todas as categorias
+LC_CTYPE ? caracteres e funções como toupper() e isalpha()
+LC_NUMERIC ? formato de números
+LC_TIME ? formato de datas
+LC_MONETARY ? formatação monetária
+
+"localidade": string que define o idioma e codificação, por exemplo:
+
+"Portuguese_Brazil.1252" ? Português Brasil no Windows (code page 1252)
+"pt_BR.UTF-8" ? Português Brasil no Linux UTF-8
+"" ? usa a configuração padrão do sistema
+
+
+#include <time.h>
+
+time(); - Dá a hora atual em segundos
