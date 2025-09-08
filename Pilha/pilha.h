@@ -10,36 +10,36 @@ void Exibe (TpPilha p);
 #define MAXPILHA 10
 
 struct TpPilha{
-	int TOPO;
-	char PILHA[MAXPILHA];
+	int topo;
+	char pilha[MAXPILHA];
 };
 
 void Inicializa ( TpPilha &p ){
-	p.TOPO = -1;
+	p.topo = -1;
 }
 
-void PUSH ( TpPilha &p, char elem ){
-	p.PILHA[++p.TOPO] = elem;
+void Push ( TpPilha &p, char elem ){
+	p.pilha[++p.topo] = elem;
 }
 
-char POP ( TpPilha &p ){
-	return p.PILHA[p.TOPO--];
+char Pop ( TpPilha &p ){
+	return p.pilha[p.topo--];
 }
 
-char ElementoTOPO ( TpPilha p ){
-	return p.PILHA[p.TOPO];
+char ElementoTopo ( TpPilha p ){
+	return p.pilha[p.topo];
 }
 
-int Cheia ( int TOPO ){
-	return TOPO == MAXPILHA -1;
+int Cheia ( int topo ){
+	return topo == MAXPILHA -1;
 }
 
-int Vazia ( int TOPO ){
-	return TOPO == -1;
+int Vazia ( int topo ){
+	return topo == -1;
 }
 
 void Exibe (TpPilha p){
-	while(!Vazia(p.TOPO))
-		printf("\n%d", POP(p));
+	while(!Vazia(p.topo))
+		printf("\n%d", Pop(p));
 	getch();
 }
