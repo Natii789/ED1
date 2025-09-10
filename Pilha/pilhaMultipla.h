@@ -65,6 +65,14 @@ void ElementoTopo(TpPilhaM PM, int NP){
 		return PM.pilha[topo2];
 }
 
+void Excluir(TpPilhaM &p, int elem){
+	while(!Vazia(p.topo1) && p.pilha[topo1] != elem)
+		Pop(p, 1);
+	
+		
+	
+}
+
 void ExibirPilha(TpPilhaM PM, int NP){
 	if( NP == 1 )
 		while (!vazia(PM.topo1, NP))
