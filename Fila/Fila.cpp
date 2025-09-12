@@ -76,3 +76,12 @@
 		
 /*5:-) 	Simule uma praça de pedágio, considerando a possibilidade de utilização de uma cabine com o sistema "Via Fácil ou Sem Parar". 
 		Responda ao final, o tempo médio que cada veículo permanece na Fila até o seu atendimento.			*/
+		
+		
+		
+
+
+
+int main(){
+	
+}
