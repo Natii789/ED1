@@ -1,5 +1,5 @@
 /*
-	FILA COM PRIORIDADE
+	FILA COM PRIORIDADE PACIENTES
 	
 		void InicializarTpFila &f);
 		char Vazia(int fim);
@@ -11,34 +11,34 @@
 		void Exibir(TpFila f);
 */
 
-#define MAXFILA
+#define MAXFILA 100
 
 
-struct TpElem{
-	char info;
-	char prior;
+struct TpPaciente{
+	char nome[50];
+	int id, prior;		//(1-Urgente / 2-Médio / 3-Normal)
 };
 
 struct TpFilaP{
 	int fim;
-	TpElem fila[MAXFILA];
+	TpPaciente fila[MAXFILA];
 };
 
-void Inicializa(TpFilaP &F){
+void Inicializa(TpFilaP &f){
 	f.fim = -1;
 }
 
-void vazia(int fim){
+int Vazia(int fim){
 	return fim == -1;
 }
 
-void Cheia(int fim){
+int Cheia(int fim){
 	return fim == MAXFILA - 1;
 }
 
-void Insere (TpFilaP &f, TpElem elem){
+void Insere (TpFilaP &f, TpPaciente elem){
 	int i = f.fim, j = f.fim;
-	while(i>=0 && f.fila.prior[i] != elem.prior)
+	while(i>=0 && f.fila.[i] != elem.prior)
 		i--;
 	if(f.fila.prior[i] == elem.prior){
 		while(j>i){
@@ -51,7 +51,7 @@ void Insere (TpFilaP &f, TpElem elem){
 
 TpElem Retira (TpFilaP &f){
 	int i;
-	TpElem elem = f.fila[0];
+	TpPaciente elem = f.fila[0];
 	for(i=0; i<f.fim; i++)
 		f.fila[i] = f.fila[i+1];
 	f.fim--;
@@ -67,10 +67,10 @@ TpElem ElemFim(TpFilaP &f){
 }
 
 void Exibir(TpFilaP f){
-	TpElem elem; 
+	TpPaciente elem; 
 	while(!Vazia(f.fim)){
 		elem = Retira(f);
-		printf("\n%c, %d\n",elem.info, elem.prior);
+		printf("\n%s, %d, %d\n",elem.nome,elem.id, elem.prior);
 	}
 		
 	getch();
