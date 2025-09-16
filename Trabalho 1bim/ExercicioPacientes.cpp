@@ -24,8 +24,7 @@ Os atributos de cada paciente são: Nome, ID (número de identificação), e Priorid
 #include <windows.h>
 
 #include "ExercicioPacientes.h"
-
-//Sleep();
+ 
 
 void InserirPaciente(TpFila){
 	TpPaciente pac;
@@ -43,25 +42,32 @@ void InserirPaciente(TpFila){
 void Atendimento(){
 	TpPaciente pac;
 	FILE *Ptr = fopen("Pacientes.txt", "r");
-	int contF = 0, contA = 0, ale;
+	int contF = 0, contA = 0, ale, linha = 0;
+		// contF = contador da fila, a cada 3 unidades de tempo um pacuente aleatorio entra na fila
+		// contA = contador de atendimento, conta as unidades até dar o tempo de atendimento do paciente
 	do{
-		ale = (rand() % 4) + 3;
+		ale = rand() % 101;
+		linha = 0;
+		rewind(Ptr);
 		if(contF == 0){
-			fscanf(Ptr,"%[^;];%d;%d", pac.nome, pac.id, pac.prior);
-			Insere(f, pac);
+			while (linha <= ale && fscanf(Ptr,"%[^;];%d;%d", pac.nome, &pac.id, &pac.prior) == 3)
+    			linha++;	
+			if (linha <= ale)
+   				Insere(f, pac);
 		}		
 
 		if(contF == 3)
 			contF = 0;
 		else
-			contF++;
-		
+			contF++; // + 1 unidade de tempo na fila 
+
+		ale = (rand() % 4) + 3;
 		if(contF == ale){
 			contA = 0;
 			Retira(f);
 		}
 		else
-			contA++;
+			contA++; // + 1 unidade de tempo de atendimento
 			
 		Sleep(ut*1000);	
 	}while(!feof(ptr) || !kbhit());
