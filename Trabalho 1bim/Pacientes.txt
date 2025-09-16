@@ -97,4 +97,4 @@ Monique Almeida;96;1
 Giovanni Silva;97;3
 Iara Nunes;98;2
 Natália Brito;99;1
-Ellen Carvalho;100;3
+Ellen Carvalho;100

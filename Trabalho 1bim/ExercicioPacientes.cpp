@@ -26,56 +26,53 @@ Os atributos de cada paciente são: Nome, ID (número de identificação), e Priorid
 #include "ExercicioPacientes.h"
  
 
-void InserirPaciente(TpFila){
-	TpPaciente pac;
-	FILE *Ptr = fopen("Pacientes.txt", "r");
-	fscanf(Ptr,"%[^;];%d;%d", pac.nome, pac.id, pac.prior);
-	while(!feof(ptr)){
-		Insere(f, pac);
-		fscanf(Ptr,"%[^;];%d;%d", pac.nome, pac.id, pac.prior);
-	}
-	fclose(arq);
-}
-
-//
-
-void Atendimento(){
-	TpPaciente pac;
-	FILE *Ptr = fopen("Pacientes.txt", "r");
-	int contF = 0, contA = 0, ale, linha = 0;
+void Atendimento(TpFilaP &f){
+	TpPaciente pac, atendido;
+	FILE *ptr = fopen("Pacientes.txt", "r");
+	int contF = 0, contA = 0, ale, ale2 = 0, linha;
 		// contF = contador da fila, a cada 3 unidades de tempo um pacuente aleatorio entra na fila
 		// contA = contador de atendimento, conta as unidades até dar o tempo de atendimento do paciente
-	do{
-		ale = rand() % 101;
-		linha = 0;
-		rewind(Ptr);
-		if(contF == 0){
-			while (linha <= ale && fscanf(Ptr,"%[^;];%d;%d", pac.nome, &pac.id, &pac.prior) == 3)
+		
+	do{	
+		// INSERÇÃO NA FILA
+		if(contF == 0 && !Cheia(f.fim)){
+			linha = 0;
+			rewind(ptr);
+			ale = rand() % 101;
+			while (linha <= ale){
+				fscanf(ptr,"%[^;];%d;%d", pac.nome, &pac.id, &pac.prior);
+				fgetc(ptr);
     			linha++;	
-			if (linha <= ale)
-   				Insere(f, pac);
+			}
+   			Insere(f, pac);
 		}		
-
 		if(contF == 3)
 			contF = 0;
 		else
 			contF++; // + 1 unidade de tempo na fila 
 
-		ale = (rand() % 4) + 3;
-		if(contF == ale){
-			contA = 0;
-			Retira(f);
+		// ATENDIMENTO MÉDICO
+		
+		if(contA == ale2){
+			atendido = Retira(f);
+			ale2 = (rand() % 4) + 3;
+			contA = 0;	
 		}
 		else
-			contA++; // + 1 unidade de tempo de atendimento
+			contA++; // + 1 unidade de tempo de atendimento	
 			
-		Sleep(ut*1000);	
-	}while(!feof(ptr) || !kbhit());
-	
+		clrscr();
+		Exibir(f, atendido);
+		Sleep(100);
+			
+	}while(!kbhit()); // kbhit : quando aperta qualquer coisa o programa para
+	fclose(ptr);
 }
-	
 
 
 int main(){
-	TpFila f;
+	TpFilaP f;
+	Inicializa(f);
+	
+	Atendimento(f);
 }
