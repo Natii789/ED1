@@ -9,6 +9,8 @@
 		char ElemInicio(TpFilaV f);
 		char ElemFim(TpFilaV f);
 		void Exibir(TpFilaV f);
+		
+		** só se usa em estruturas muito grandes
 */
 
 #define MAXFILA 5
@@ -30,10 +32,12 @@ void Inicializa(TpFilaV &F){
 }
 
 void Vazia(int fim){
-	return ;
+	return fim < inicio;
 }
 
 void Cheia(int fim){
+	return fim - inicio + 1 == MAXFILA;
+		// fim + 1 == MAXFILA;
 }
 
 void Insere (TpFilaV &f, TpElem elem){
@@ -45,11 +49,11 @@ TpElem Retira (TpFilaV &f){
 }
 
 TpElem ElemInicio(TpFilaV &f){
-	
+	return f.fila[f.inicio];
 }
 
 TpElem ElemFim(TpFilaV &f){
-	
+	return f.fila[f.fim];
 }
 
 void Exibe(TpFilaV f){
