@@ -25,14 +25,15 @@ Os atributos de cada paciente são: Nome, ID (número de identificação), e Priorid
 
 #include "ExercicioPacientes.h"
  
-
 void Atendimento(TpFilaP &f){
 	TpPaciente pac, atendido;
 	FILE *ptr = fopen("Pacientes.txt", "r");
-	int contF = 0, contA = 0, ale, ale2 = 0, linha;
+	int contF = 0, contA = 0, contP = 0, ale, atend = 0, linha;
+	float media = 0;
 		// contF = contador da fila, a cada 3 unidades de tempo um pacuente aleatorio entra na fila
 		// contA = contador de atendimento, conta as unidades até dar o tempo de atendimento do paciente
-		
+		// contP = contador de pessoas atendidas
+		// media = duração média dos atendimentos
 	do{	
 		// INSERÇÃO NA FILA
 		if(contF == 0 && !Cheia(f.fim)){
@@ -50,26 +51,30 @@ void Atendimento(TpFilaP &f){
 			contF = 0;
 		else
 			contF++; // + 1 unidade de tempo na fila 
-
 		// ATENDIMENTO MÉDICO
-		
-		if(contA == ale2){
-			atendido = Retira(f);
-			ale2 = (rand() % 4) + 3;
+		if(contA == atend){
+			if(!Vazia(f.fim)){
+				atendido = Retira(f);
+				contP++;
+			}
+			atend = (rand() % 4) + 3;
+			media = media + atend;
 			contA = 0;	
 		}
 		else
 			contA++; // + 1 unidade de tempo de atendimento	
-			
 		clrscr();
-		Exibir(f, atendido);
+		Exibir(f, atendido, atend);
 		Sleep(100);
 			
 	}while(!kbhit()); // kbhit : quando aperta qualquer coisa o programa para
+	//clrscr();
+	media = media/contP;
+	printf("\n\n\nPessoas atendidas: %d", contP);
+	printf("\nMedia de atendimento: %.2f", media);
 	fclose(ptr);
+	getch();
 }
-
-
 int main(){
 	TpFilaP f;
 	Inicializa(f);
