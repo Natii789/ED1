@@ -18,31 +18,34 @@
 
 struct TpElem{
 	char info;
-	char prior;
 };
 
 struct TpFilaC{
-	int inicio, fim;
+	int inicio, fim, cont;
 	int fila[MAXFILA];
 };
 
 void Inicializa(TpFilaC &F){
 	f.inicio = 0;
 	f.fim = -1;
+	f.cont = 0;
 }
 
-void Vazia(int fim){
-	return fim == 0;
+void Vazia(int cont){
+	return cont == 0;
 }
 
-void Cheia(int fim){
-	return fim == MAXFILA;
+void Cheia(int cont){
+	return cont == MAXFILA;
 }
 
 void Insere (TpFilaC &f, TpElem elem){
 	if(f.fim == MAXFILA - 1)
 		f.fim = -1;
-	f.fila[++f.fim] = elem;
+	else 
+		f.fim++;
+	f.fila[f.fim] = elem;
+	f.cont++;
 }
 
 TpElem Retira (TpFilaC &f){
@@ -51,7 +54,8 @@ TpElem Retira (TpFilaC &f){
 		f.inicio = 0;
 	else
 		f.inicio++;
-	return ;
+	f.cont--;
+	return aux;
 }
 
 TpElem ElemInicio(TpFilaC &f){
