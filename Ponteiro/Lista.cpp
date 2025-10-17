@@ -40,23 +40,38 @@ TpPont *NovoNo (int valor){	//uma função do tipo ponteiro retorna um endereço de
 
 TpPont *Inserir (TpPont *lista){
 	int num;
+	TpPont *caixa, *ant, *atual;
 	printf("\n**Inserir Ordenadamente**\n");
 	printf("\nValor:");
 	scanf("%d", &num);
-	while(num!= 0){
+	while(num != 0){
 		caixa =NovoNo(num); 
 	}
 	if(lista==NULL)
 		lista = caixa;
 	else{
-		if(lista->info>num){
-			caixa->prox = lista;
+		if(lista -> info>num){
+			caixa -> prox = lista;
 			lista = caixa; 
 		}
 		else{
-			
+			ant = lissta;
+			atual = lista -> prox;
+			while(atual != NULL && num>atual -> info){
+				ant = atual;
+				atual = atual -> prox;
+			}
+			if(atual != NULL){
+				caixa -> prox = atual;
+				ant ->prox = caixa;
+			}
+			else
+				ant->prox = caixa;
 		}
+		printf("\nValor:");
+		scanf("%d",&num);
 	}
+	return lista;
 }
 
 
