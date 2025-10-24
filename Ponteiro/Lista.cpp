@@ -1,3 +1,5 @@
+#include<stdio.h>
+
 /*
 UTILIZAÇÃO DE PONTEIRO
 	-> para alocação dinâmica 
@@ -30,6 +32,7 @@ struct TpPont{
 	TpPont *prox;
 };
 
+
 TpPont *NovoNo (int valor){	//uma função do tipo ponteiro retorna um endereço de ponteiro
 	TpPont *no; 	//no esta apontando para lixo
 	no = new TpPont;	// no||-> |?|->//
@@ -55,7 +58,7 @@ TpPont *Inserir (TpPont *lista){
 			lista = caixa; 
 		}
 		else{
-			ant = lissta;
+			ant = lista;
 			atual = lista -> prox;
 			while(atual != NULL && num>atual -> info){
 				ant = atual;
@@ -74,6 +77,45 @@ TpPont *Inserir (TpPont *lista){
 	return lista;
 }
 
+TpPont *Excluir(TpPont *lista){
+	int elem;
+	TpPonte *atual, *ant;
+	printf("\n**Exclusão de Elementos**\n");
+	printf("Elemento: ");
+	scanf("%d", &elem);
+	while(lista != NULL && elem != 0){
+		if(elem == lista->info){
+			atual = lista;
+			lista = lista -> prox;
+			delete (atual)
+		}
+		else{
+			ant = lista;
+			atual = lista->prox;
+			while(atual!=NULL){
+				ant = atual;
+				atual = atual->prox;
+			}
+			if(atual != NULL && elem == atual->info){
+				ant->prox = atual->prox;
+				delete(atual);
+			}
+			else
+				printf("\nElemento não encontrado!\n");
+		}
+		printf("Elemento: ");
+		scanf("%d", &elem);
+	}
+	return lista;
+}
+
+//exibir recursivo 
+
+void Exibir(TpPot *lista){
+	if(lista != NULL)
+		printf("%d", lista->elem);
+	Exibir(lista->prox);
+}
 
 
 int main(){
