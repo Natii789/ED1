@@ -25,8 +25,8 @@ struct TpFilme{
 };
 
 struct TpLista{
-	TpFilme *filme;
 	int ano, lucro;
+	TpFilme *filme;
 	TpLista *prox, *ant;
 };
 
@@ -42,27 +42,25 @@ void Inicializar(TpDesc &D){
 	D.qtde = 0;
 }
 
-TpLista *NovoNoL(int elem){	// lista de anos
-	TpLista *no;
-	no = new TpLista;
-	no->ano = elem;
-	no->prox = NULL;
-	return no;
-}
+TpLista *NovoNoL(int elem){			// lista de anos
+    TpLista *no = new TpLista;
+    no->ano = elem;
+    no->filmes = NULL;
+    no->prox = no->ant = NULL;
+    return no;
+}	
 
-TpFilme *NovoNoF(TpFilme F){ // lista de filmes
-	TpFilme *no;
-	no = new TpFilme;
-	no->ano = F.ano;
-	strcpy(no->classif, F.classif);
-
-	no->duracao = F.duracao;
-	no->espec = F.espec;
-	no->gasto = F.gasto;
-	strcpy(no->nome, F.nome);
-	no->renda = F.renda;
-	//no->prox = NULL;
-	return no;
+TpFilme *NovoNoF(TpFilme F){		// lista de filmes
+    TpFilme *no = new TpFilme;
+    strcpy(no->nome, F.nome);
+    strcpy(no->classif, F.classif);
+    no->ano = F.ano;
+    no->duracao = F.duracao;
+    no->espec = F.espec;
+    no->gasto = F.gasto;
+    no->renda = F.renda;
+    no->prox = NULL;
+    return no;
 }
 
 int Busca(TpDesc D, int valor){
@@ -167,12 +165,12 @@ void InserirFilme(TpDesc &D){
 
 
 void ExibirA(TpDesc D){
-	while(D.qtde != 0)
-	{
-		printf("\n%d", D.inicio->ano);
-		D.inicio = D.inicio->prox;
-		D.qtde--;
-	}
+	TpLista *aux = D.inicio;
+	while(aux != NULL){
+        printf("\nAno: %d", aux->ano);
+        aux = aux->prox;
+    }
+	getch();
 }
 
 int main(void){
